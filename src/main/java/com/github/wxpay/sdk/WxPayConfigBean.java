@@ -46,6 +46,7 @@ public class WxPayConfigBean extends WXPayConfig {
     }
 
     public void setCertPath(String certPath) throws Exception {
+         this.certPath = certPath;
         if (certPath != null) {
             File file = new File(this.certPath);
             InputStream certStream = new FileInputStream(file);
@@ -53,7 +54,6 @@ public class WxPayConfigBean extends WXPayConfig {
             certStream.read(this.certData);
             certStream.close();
         }
-        this.certPath = certPath;
     }
 
     public byte[] getCertData() {
