@@ -29,12 +29,30 @@ public class WxPayConfigBean extends WXPayConfig {
 
     private IWXPayDomain.DomainInfo domainInfo;
 
-    public WxPayConfigBean() throws Exception {
+    public WxPayConfigBean(){
+    }
 
+    public void setCertPath(String certPath) throws Exception {
+        this.certPath = certPath;
+        if (certPath != null) {
+            File file = new File(this.certPath);
+            InputStream certStream = new FileInputStream(file);
+            this.certData = new byte[(int) file.length()];
+            certStream.read(this.certData);
+            certStream.close();
+        }
+    }
+
+    public String getAppId() {
+        return appId;
     }
 
     public void setAppId(String appId) {
         this.appId = appId;
+    }
+
+    public String getMchId() {
+        return mchId;
     }
 
     public void setMchId(String mchId) {
@@ -45,15 +63,12 @@ public class WxPayConfigBean extends WXPayConfig {
         this.key = key;
     }
 
-    public void setCertPath(String certPath) throws Exception {
-        if (certPath != null) {
-            File file = new File(this.certPath);
-            InputStream certStream = new FileInputStream(file);
-            this.certData = new byte[(int) file.length()];
-            certStream.read(this.certData);
-            certStream.close();
-        }
-        this.certPath = certPath;
+    public String getCertPath() {
+        return certPath;
+    }
+
+    public IWXPayDomain.DomainInfo getDomainInfo() {
+        return domainInfo;
     }
 
     public byte[] getCertData() {
@@ -69,22 +84,22 @@ public class WxPayConfigBean extends WXPayConfig {
     }
 
     @Override
-    String getAppID() {
+    public String getAppID() {
         return appId;
     }
 
     @Override
-    String getMchID() {
+    public String getMchID() {
         return mchId;
     }
 
     @Override
-    String getKey() {
+    public String getKey() {
         return key;
     }
 
     @Override
-    InputStream getCertStream() {
+    public InputStream getCertStream() {
         try {
             File file = new File(this.certPath);
             return new FileInputStream(file);
@@ -95,7 +110,7 @@ public class WxPayConfigBean extends WXPayConfig {
     }
 
     @Override
-    IWXPayDomain getWXPayDomain() {
+    public IWXPayDomain getWXPayDomain() {
         return new IWXPayDomain() {
 
             @Override
