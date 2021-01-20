@@ -27,6 +27,9 @@ public class WxPayConfigBean extends WXPayConfig {
 
     private byte[] certData;
 
+    //通知回调地址
+    private String notifyUrl;
+
     private IWXPayDomain.DomainInfo domainInfo;
 
     public WxPayConfigBean(){
@@ -81,6 +84,14 @@ public class WxPayConfigBean extends WXPayConfig {
 
     public void setDomainInfo(IWXPayDomain.DomainInfo domainInfo) {
         this.domainInfo = domainInfo;
+    }
+
+    public String getNotifyUrl() {
+        return notifyUrl;
+    }
+
+    public void setNotifyUrl(String notifyUrl) {
+        this.notifyUrl = notifyUrl;
     }
 
     @Override
